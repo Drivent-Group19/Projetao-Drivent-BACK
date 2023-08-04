@@ -1,14 +1,13 @@
-import { Response } from "express";
+import { Response, Request } from "express";
 import { AuthenticatedRequest } from "@/middlewares";
 import roomService from "@/services/room-service";
 import httpStatus from "http-status";
 
-export async function getRoomsByHotelId(req: AuthenticatedRequest, res: Response) {
-  const { userId } = req;
+export async function getRoomsByHotelId(req: Request, res: Response) {
   const { hotelId } = req.params;
   
   try {
-    const rooms = await roomService.getRoomsByHotelId( Number(userId), Number(hotelId));
+    const rooms = await roomService.getRoomsByHotelId( Number(hotelId));
   
     return res.status(httpStatus.OK).send(rooms);
   } catch (error) {

@@ -18,8 +18,7 @@ async function listHotels(userId: number) {
   }
 }
 
-async function getRoomsByHotelId(userId: number, hotelId: number) {
-  await listHotels(userId);
+async function getRoomsByHotelId( hotelId: number) {
   const rooms = roomRepository.findAllByHotelId(hotelId);
 
   if (!rooms) {

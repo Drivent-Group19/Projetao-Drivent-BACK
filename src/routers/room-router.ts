@@ -4,8 +4,6 @@ import { getRoomsByHotelId } from "@/controllers";
 
 const roomRouter= Router();
 
-roomRouter
-  .all("/*", authenticateToken)
-  .get("/:hotelId", getRoomsByHotelId);
+roomRouter.get("/:hotelId", getRoomsByHotelId);
 
 export { roomRouter };
