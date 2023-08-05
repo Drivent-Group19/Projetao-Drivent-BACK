@@ -1,5 +1,5 @@
 import { AuthenticatedRequest } from "@/middlewares";
-import { Response } from "express";
+import { Response, Request } from "express";
 import httpStatus from "http-status";
 import bookingService from "@/services/booking-service";
 
@@ -13,6 +13,16 @@ export async function listBooking(req: AuthenticatedRequest, res: Response) {
     });
   } catch (error) {
     return res.sendStatus(httpStatus.NOT_FOUND);
+  }
+}
+
+export async function getBookingByRoomId(req: Request, res: Response) {
+  try {
+    const { roomId } = req.params;
+    const booking = await bookingService.getBookingByRoomId(Number(roomId));
+    return res.status(httpStatus.OK).send(booking);
+  } catch (error) {
+    return res.sendStatus(404);
   }
 }
 
