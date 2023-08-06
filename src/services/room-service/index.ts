@@ -28,8 +28,19 @@ async function getRoomsByHotelId( hotelId: number) {
   return rooms;
 }
 
+async function getById(roomId: number) {
+  const rooms = roomRepository.findById(roomId);
+
+  if (!rooms) {
+    throw notFoundError();
+  }
+
+  return rooms;
+}
+
 const roomService = {
-  getRoomsByHotelId
+  getRoomsByHotelId,
+  getById
 };
   
 export default roomService;
