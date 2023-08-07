@@ -115,6 +115,145 @@ async function createScenario(options: CreateScenarioParams) {
   });
 }
 
+// async function createActivity() {
+  // let activity = await prisma.activity.findFirst();
+
+  // if(activity){
+  //   await prisma.activity.deleteMany({});
+  //   await prisma.activityPlace.deleteMany({});
+  // }
+
+//   const placeOne = await prisma.activityPlace.create({
+//     data: {
+//       name: 'Auditorio Um',
+//     },
+//   });
+
+//   const placeTwo = await prisma.activityPlace.create({
+//     data: {
+//       name: 'Auditorio Dois',
+//     },
+//   });
+
+//   const placeThree = await prisma.activityPlace.create({
+//     data: {
+//       name: 'Auditorio Três',
+//     },
+//   })
+
+//   const hour = 8;
+//   let day = 6;
+  
+//   //se der erro pode ser aqui
+//   const event = await createEvent();
+
+//   await prisma.activity.create({
+//     data:{
+//       title: 'Introdução ao React',
+//       capacity: 30,
+//       activityPlaceId: placeOne.id,
+//       eventId: event.id,
+//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
+//     }
+//   });
+
+//   await prisma.activity.create({
+//     data:{
+//       title: 'Introdução ao Java',
+//       capacity: 30,
+//       activityPlaceId: placeTwo.id,
+//       eventId: event.id,
+//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
+//     }
+//   });
+
+//   await prisma.activity.create({
+//     data:{
+//       title: 'Introdução ao Ts',
+//       capacity: 0,
+//       activityPlaceId: placeThree.id,
+//       eventId: event.id,
+//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+//       endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+//     }
+//   });
+
+//   day++
+
+//   await prisma.activity.create({
+//     data:{
+//       title: 'Introdução ao C#',
+//       capacity: 30,
+//       activityPlaceId: placeOne.id,
+//       eventId: event.id,
+//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
+//     }
+//   });
+
+//   await prisma.activity.create({
+//     data:{
+//       title: 'Introdução ao JavScript',
+//       capacity: 30,
+//       activityPlaceId: placeTwo.id,
+//       eventId: event.id,
+//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
+//     }
+//   });
+
+//   await prisma.activity.create({
+//     data:{
+//       title: 'Introdução ao Python',
+//       capacity: 0,
+//       activityPlaceId: placeThree.id,
+//       eventId: event.id,
+//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+//       endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+//     }
+//   });
+//   console.log('createActivities');
+// }
+
+// async function createTicketType() {
+//   // let ticketType = await prisma.ticketType.findFirst();
+
+//   // if(ticketType) await prisma.ticketType.deleteMany({});
+
+//    await prisma.ticketType.create({
+//     data:{
+//       name: 'Online',
+//       price: 150,
+//       isRemote: true,
+//       includesHotel: false,
+//       createdAt: dayjs().toDate(),
+//     },
+//   });
+
+//    await prisma.ticketType.create({
+//     data:{
+//       name: 'Presencial',
+//       price: 489,
+//       isRemote: false,
+//       includesHotel: true,
+//       createdAt: dayjs().toDate(),
+//     },
+//   });
+
+//    await prisma.ticketType.create({
+//     data:{
+//       name: 'Presencial',
+//       price: 489,
+//       isRemote: false,
+//       includesHotel: false,
+//       createdAt: dayjs().toDate(),
+//     },
+//   });
+//   console.log('createTicketType');
+// }
+
 async function main() {
   await Promise.all([
     createEvent(),
