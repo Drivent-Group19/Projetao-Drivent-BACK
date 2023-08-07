@@ -8,7 +8,7 @@ export async function getActivities(req: AuthenticatedRequest, res: Response, ne
 
   try {
     const activities = await activitiesService.getActivities(userId);
-    
+
     return res.status(httpStatus.OK).send(activities);
   } catch (error) {
     next(error);
@@ -17,6 +17,9 @@ export async function getActivities(req: AuthenticatedRequest, res: Response, ne
 
 export async function postActivity(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
+    const activities = await activitiesService.postActivity();
+
+    return res.status(httpStatus.CREATED).send(activities);
   } catch (error) {
     next(error);
   }

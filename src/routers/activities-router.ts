@@ -1,5 +1,6 @@
 import { getActivities, postActivity, postBookings, postPlace } from '@/controllers/activities-controller';
-import { authenticateToken } from '@/middlewares';
+import { authenticateToken, validateBody } from '@/middlewares';
+import { activitiesSchema, bookingSchema } from '@/schemas/activities-schemas';
 import { Router } from 'express';
 
 const activitiesRouter = Router();
@@ -7,8 +8,8 @@ const activitiesRouter = Router();
 activitiesRouter
     .all('/', authenticateToken)
     .get('/', getActivities)
-    .post('/', postActivity)
-    .post('/place', postPlace)
-    .post('/booking', postBookings);
+    .post('/', validateBody(activitiesSchema), postActivity)
+    .post('/place', validateBody(activitiesSchema), postPlace)
+    .post('/booking', validateBody(bookingSchema), postBookings);
 
 export { activitiesRouter };
