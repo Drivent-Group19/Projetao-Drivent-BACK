@@ -27,6 +27,9 @@ export async function postActivity(req: AuthenticatedRequest, res: Response, nex
 
 export async function postPlace(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
+    const place = await activitiesService.postPlace();
+
+    return res.status(httpStatus.CREATED).send(place);
   } catch (error) {
     next(error);
   }
