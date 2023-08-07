@@ -37,6 +37,16 @@ async function getBooking(userId: number) {
   return booking;
 }
 
+async function getBookingByRoomId(roomId: number) {
+  console.log(roomId);
+  const booking = await bookingRepository.findByRoomId(roomId);
+  if (!booking[0]) {
+    return [];
+  }
+
+  return booking;
+}
+
 async function bookingRoomById(userId: number, roomId: number) {
   await checkEnrollmentTicket(userId);
   await checkValidBooking(roomId);
@@ -63,6 +73,7 @@ const bookingService = {
   bookingRoomById,
   getBooking,
   changeBookingRoomById,
+  getBookingByRoomId
 };
 
 export default bookingService;
