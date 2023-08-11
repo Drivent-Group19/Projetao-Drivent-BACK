@@ -27,8 +27,8 @@ async function getHotels(userId: number) {
 
   if (userId) {
     const cacheKey = "hotels";
-    const cachedPhotos = await redis.get(cacheKey);
-    if (cachedPhotos) return JSON.parse(cachedPhotos);
+    const redisHotels = await redis.get(cacheKey);
+    if (redisHotels) return JSON.parse(redisHotels);
     else {
       const hotels = await hotelRepository.findHotels();
       redis.setEx(cacheKey, DEFAULT_EXP, JSON.stringify(hotels));
