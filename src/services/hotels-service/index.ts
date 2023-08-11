@@ -3,6 +3,10 @@ import enrollmentRepository from "@/repositories/enrollment-repository";
 import ticketRepository from "@/repositories/ticket-repository";
 import { notFoundError } from "@/errors";
 import { cannotListHotelsError } from "@/errors/cannot-list-hotels-error";
+// eslint-disable-next-line boundaries/element-types
+import redis from "config/redis";
+// eslint-disable-next-line boundaries/element-types
+import { DEFAULT_EXP } from "config/redis";
 
 async function listHotels(userId: number) {
   //Tem enrollment?
@@ -21,8 +25,16 @@ async function listHotels(userId: number) {
 async function getHotels(userId: number) {
   await listHotels(userId);
 
-  const hotels = await hotelRepository.findHotels();
-  return hotels;
+  if (userId) {
+    const cacheKey = "hotels";
+    const cachedPhotos = await redis.get(cacheKey);
+    if (cachedPhotos) return JSON.parse(cachedPhotos);
+    else {
+      const hotels = await hotelRepository.findHotels();
+      redis.setEx(cacheKey, DEFAULT_EXP, JSON.stringify(hotels));
+      return hotels;
+    }
+  }
 }
 
 async function getHotelsWithRooms(userId: number, hotelId: number) {
