@@ -1,8 +1,8 @@
-import { AuthenticatedRequest } from '@/middlewares';
-import activitiesService from '@/services/activities-service';
-import { NextFunction, Response } from 'express';
-import httpStatus from 'http-status';
-import { ActivitiesBody } from '@/protocols';
+import { AuthenticatedRequest } from "@/middlewares";
+import activitiesService from "@/services/activities-service";
+import { NextFunction, Response } from "express";
+import httpStatus from "http-status";
+import { ActivitiesBody } from "@/protocols";
 
 export async function getActivities(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const { userId } = req;
@@ -41,7 +41,7 @@ export async function postBookings(req: AuthenticatedRequest, res: Response, nex
   const { activityId } = req.body as ActivitiesBody;
 
   try {
-    const bookings = await activitiesService.postBookings(activityId, userId);
+    const bookings = await activitiesService.postBookings(activityId, Number(userId));
 
     return res.status(httpStatus.CREATED).send(bookings);
   } catch (error) {
