@@ -1,5 +1,5 @@
-import { prisma } from '@/config';
-import { Activity, ActivityBooKing } from '@prisma/client';
+import { prisma } from "@/config";
+import { Activity, ActivityBooKing } from "@prisma/client";
 
 async function findActivities() {
   return prisma.activity.findMany({
