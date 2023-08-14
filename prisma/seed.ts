@@ -115,144 +115,144 @@ async function createScenario(options: CreateScenarioParams) {
   });
 }
 
-// async function createActivity() {
-  // let activity = await prisma.activity.findFirst();
+async function createActivity() {
+  let activity = await prisma.activity.findFirst();
 
-  // if(activity){
-  //   await prisma.activity.deleteMany({});
-  //   await prisma.activityPlace.deleteMany({});
-  // }
+  if(activity){
+    await prisma.activity.deleteMany({});
+    await prisma.activityPlace.deleteMany({});
+  }
 
-//   const placeOne = await prisma.activityPlace.create({
-//     data: {
-//       name: 'Auditorio Um',
-//     },
-//   });
+  const placeOne = await prisma.activityPlace.create({
+    data: {
+      name: 'Auditório Principal',
+    },
+  });
 
-//   const placeTwo = await prisma.activityPlace.create({
-//     data: {
-//       name: 'Auditorio Dois',
-//     },
-//   });
+  const placeTwo = await prisma.activityPlace.create({
+    data: {
+      name: 'Auditório Lateral',
+    },
+  });
 
-//   const placeThree = await prisma.activityPlace.create({
-//     data: {
-//       name: 'Auditorio Três',
-//     },
-//   })
+  const placeThree = await prisma.activityPlace.create({
+    data: {
+      name: 'Sala de Workshop',
+    },
+  })
 
-//   const hour = 8;
-//   let day = 6;
+  const hour = 9;
+  let day = 7;
   
-//   //se der erro pode ser aqui
-//   const event = await createEvent();
+  //se der erro pode ser aqui
+  const event = await createEvent();
 
-//   await prisma.activity.create({
-//     data:{
-//       title: 'Introdução ao React',
-//       capacity: 30,
-//       activityPlaceId: placeOne.id,
-//       eventId: event.id,
-//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
-//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
-//     }
-//   });
+  await prisma.activity.create({
+    data:{
+      title: 'Introdução ao React',
+      capacity: 30,
+      activityPlaceId: placeOne.id,
+      eventId: event.id,
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+    }
+  });
 
-//   await prisma.activity.create({
-//     data:{
-//       title: 'Introdução ao Java',
-//       capacity: 30,
-//       activityPlaceId: placeTwo.id,
-//       eventId: event.id,
-//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
-//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
-//     }
-//   });
+  await prisma.activity.create({
+    data:{
+      title: 'Introdução ao Java',
+      capacity: 30,
+      activityPlaceId: placeTwo.id,
+      eventId: event.id,
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+    }
+  });
 
-//   await prisma.activity.create({
-//     data:{
-//       title: 'Introdução ao Ts',
-//       capacity: 0,
-//       activityPlaceId: placeThree.id,
-//       eventId: event.id,
-//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
-//       endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
-//     }
-//   });
+  await prisma.activity.create({
+    data:{
+      title: 'Introdução ao Ts',
+      capacity: 0,
+      activityPlaceId: placeThree.id,
+      eventId: event.id,
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+    }
+  });
 
-//   day++
+  day++
 
-//   await prisma.activity.create({
-//     data:{
-//       title: 'Introdução ao C#',
-//       capacity: 30,
-//       activityPlaceId: placeOne.id,
-//       eventId: event.id,
-//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
-//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
-//     }
-//   });
+  await prisma.activity.create({
+    data:{
+      title: 'Introdução ao C#',
+      capacity: 30,
+      activityPlaceId: placeOne.id,
+      eventId: event.id,
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+    }
+  });
 
-//   await prisma.activity.create({
-//     data:{
-//       title: 'Introdução ao JavScript',
-//       capacity: 30,
-//       activityPlaceId: placeTwo.id,
-//       eventId: event.id,
-//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
-//       endsAt: dayjs().add(day, 'day').hour(hour + 3).toDate(),
-//     }
-//   });
+  await prisma.activity.create({
+    data:{
+      title: 'Introdução ao JavScript',
+      capacity: 30,
+      activityPlaceId: placeTwo.id,
+      eventId: event.id,
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+    }
+  });
 
-//   await prisma.activity.create({
-//     data:{
-//       title: 'Introdução ao Python',
-//       capacity: 0,
-//       activityPlaceId: placeThree.id,
-//       eventId: event.id,
-//       startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
-//       endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
-//     }
-//   });
-//   console.log('createActivities');
-// }
+  await prisma.activity.create({
+    data:{
+      title: 'Introdução ao Python',
+      capacity: 0,
+      activityPlaceId: placeThree.id,
+      eventId: event.id,
+      startsAt: dayjs().add(day, 'day').hour(hour + 1).toDate(),
+      endsAt: dayjs().add(day, 'day').hour(hour + 2).toDate(),
+    }
+  });
+  console.log('createActivities');
+}
 
-// async function createTicketType() {
-//   // let ticketType = await prisma.ticketType.findFirst();
+async function createTicketType() {
+  // let ticketType = await prisma.ticketType.findFirst();
 
-//   // if(ticketType) await prisma.ticketType.deleteMany({});
+  // if(ticketType) await prisma.ticketType.deleteMany({});
 
-//    await prisma.ticketType.create({
-//     data:{
-//       name: 'Online',
-//       price: 150,
-//       isRemote: true,
-//       includesHotel: false,
-//       createdAt: dayjs().toDate(),
-//     },
-//   });
+   await prisma.ticketType.create({
+    data:{
+      name: 'Online',
+      price: 150,
+      isRemote: true,
+      includesHotel: false,
+      createdAt: dayjs().toDate(),
+    },
+  });
 
-//    await prisma.ticketType.create({
-//     data:{
-//       name: 'Presencial',
-//       price: 489,
-//       isRemote: false,
-//       includesHotel: true,
-//       createdAt: dayjs().toDate(),
-//     },
-//   });
+   await prisma.ticketType.create({
+    data:{
+      name: 'Presencial',
+      price: 489,
+      isRemote: false,
+      includesHotel: true,
+      createdAt: dayjs().toDate(),
+    },
+  });
 
-//    await prisma.ticketType.create({
-//     data:{
-//       name: 'Presencial',
-//       price: 489,
-//       isRemote: false,
-//       includesHotel: false,
-//       createdAt: dayjs().toDate(),
-//     },
-//   });
-//   console.log('createTicketType');
-// }
+   await prisma.ticketType.create({
+    data:{
+      name: 'Presencial',
+      price: 489,
+      isRemote: false,
+      includesHotel: false,
+      createdAt: dayjs().toDate(),
+    },
+  });
+  console.log('createTicketType');
+}
 
 async function main() {
   await Promise.all([
@@ -261,6 +261,8 @@ async function main() {
     createScenario({ email: 'ticketonly@email.com', isRemote: false, includesHotel: false }),
     createScenario({ email: 'hotel@email.com', isRemote: false, includesHotel: true }),
     createScenario({ email: 'remote@email.com', isRemote: true, includesHotel: false }),
+    createActivity(),
+    createTicketType(),
   ]);
 }
 

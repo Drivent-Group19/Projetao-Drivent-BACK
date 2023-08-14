@@ -1,14 +1,14 @@
-import { AuthenticatedRequest } from '@/middlewares';
-import activitiesService from '@/services/activities-service';
-import { NextFunction, Response } from 'express';
-import httpStatus from 'http-status';
-import { ActivitiesBody } from '@/protocols';
+import { AuthenticatedRequest } from "@/middlewares";
+import activitiesService from "@/services/activities-service";
+import { NextFunction, Response } from "express";
+import httpStatus from "http-status";
+import { ActivitiesBody } from "@/protocols";
 
 export async function getActivities(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const { userId } = req;
 
   try {
-    const activities = await activitiesService.getActivities(userId);
+    const activities = await activitiesService.getActivities(Number(userId));
 
     return res.status(httpStatus.OK).send(activities);
   } catch (error) {
@@ -41,7 +41,9 @@ export async function postBookings(req: AuthenticatedRequest, res: Response, nex
   const { activityId } = req.body as ActivitiesBody;
 
   try {
-    const bookings = await activitiesService.postBookings(activityId, userId);
+    console.log(userId);
+    console.log(activityId);
+    const bookings = await activitiesService.postBookings(activityId, Number(userId));
 
     return res.status(httpStatus.CREATED).send(bookings);
   } catch (error) {
