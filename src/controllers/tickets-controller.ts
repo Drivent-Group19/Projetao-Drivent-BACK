@@ -30,6 +30,8 @@ export async function createTicket(req: AuthenticatedRequest, res: Response) {
 
   //TODO validação do JOI
   const { ticketTypeId } = req.body;
+  console.log(ticketTypeId);
+  console.log(userId);
 
   if (!ticketTypeId) {
     return res.sendStatus(httpStatus.BAD_REQUEST);
@@ -37,6 +39,7 @@ export async function createTicket(req: AuthenticatedRequest, res: Response) {
 
   try {
     const ticketTypes = await ticketService.createTicket(userId, ticketTypeId);
+    console.log(ticketTypes);
 
     return res.status(httpStatus.CREATED).send(ticketTypes);
   } catch (error) {

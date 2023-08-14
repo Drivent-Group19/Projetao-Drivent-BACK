@@ -33,10 +33,14 @@ export async function paymentProcess(req: AuthenticatedRequest, res: Response) {
       cardData,
     } = req.body;
 
+    console.log(userId);
+    console.log(ticketId);
+    console.log(cardData);
+
     if (!ticketId || !cardData) {
       return res.sendStatus(httpStatus.BAD_REQUEST);
     }
-    const payment = await paymentService.paymentProcess(ticketId, userId, cardData);
+    const payment = await paymentService.paymentProcess(Number(ticketId), userId, cardData);
 
     if (!payment) {
       return res.sendStatus(httpStatus.NOT_FOUND);
