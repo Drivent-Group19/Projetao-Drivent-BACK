@@ -8,3 +8,4 @@ export * from "./hotel-controller";
 export * from "./booking-controller";
 export * from "./room-controller";
 export * from "./activities-controller";
+export * from "./first-controller";

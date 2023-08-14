@@ -19,6 +19,8 @@ import {
   bookingRouter,
   activitiesRouter,
   roomRouter,
+  authGitRouter,
+  firstRouter,
 } from "@/routers";
 
 const app = express();
@@ -28,6 +30,8 @@ app
   .get("/health", (_req, res) => res.send("OK!"))
   .use("/users", usersRouter)
   .use("/auth", authenticationRouter)
+  .use("/authGitHub", authGitRouter)
+  .use("/first", firstRouter)
   .use("/event", eventsRouter)
   .use("/enrollments", enrollmentsRouter)
   .use("/tickets", ticketsRouter)

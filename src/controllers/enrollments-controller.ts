@@ -5,7 +5,12 @@ import httpStatus from "http-status";
 
 export async function getEnrollmentByUser(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
-
+  const { user } = res.locals;
+  console.log("user enrollment", user);
+/*   ///
+  const { user } = res.locals;
+  if (user) return res.send(user);
+  //// */
   try {
     const enrollmentWithAddress = await enrollmentsService.getOneWithAddressByUserId(userId);
 
