@@ -2,7 +2,7 @@ import { notFoundError, unauthorizedError } from '@/errors';
 import paymentRepository, { PaymentParams } from '@/repositories/payment-repository';
 import ticketRepository from '@/repositories/ticket-repository';
 import enrollmentRepository from '@/repositories/enrollment-repository';
-import sendEmail from '@/utils/email';
+import sendPaymentConfirmation from '@/utils/payment-confirmation';
 
 async function verifyTicketAndEnrollment(ticketId: number, userId: number) {
   const ticket = await ticketRepository.findTickeyById(ticketId);
@@ -44,7 +44,7 @@ async function paymentProcess(ticketId: number, userId: number, cardData: CardPa
 
   await ticketRepository.ticketProcessPayment(ticketId);
 
-  const emailData = await ticketRepository.getEmailInfo(ticketId);
+  const emailData = await ticketRepository.getInfoByEmail(ticketId);
 
   let ticketType;
 
@@ -67,7 +67,7 @@ async function paymentProcess(ticketId: number, userId: number, cardData: CardPa
       price: emailData.TicketType.price
     };
 
-      sendEmail(mailInfo);
+    sendPaymentConfirmation(mailInfo);
   }
 
 

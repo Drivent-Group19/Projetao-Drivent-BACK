@@ -9,7 +9,7 @@ type MailInfo = {
   price: number;
 };
 
-export default async function sendEmail(mailInfo: MailInfo) {
+export default async function sendPaymentConfirmation(mailInfo: MailInfo) {
   const { userEmail, userName, ticketType, price } = mailInfo;
 
   const html = `
@@ -32,7 +32,7 @@ export default async function sendEmail(mailInfo: MailInfo) {
     const info = await transporter.sendMail({
       from: `Drivent <${process.env.EMAIL}>`,
       to: userEmail,
-      subject: 'Pagamento efetuado com sucesso!',
+      subject: 'Pagamento efetuado com sucesso :)',
       html: html,
     });
 

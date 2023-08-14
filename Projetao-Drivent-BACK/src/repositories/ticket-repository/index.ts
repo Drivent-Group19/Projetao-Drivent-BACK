@@ -56,7 +56,7 @@ async function ticketProcessPayment(ticketId: number) {
   });
 }
 
-async function getEmailInfo(ticketId: number) {
+async function getInfoByEmail(ticketId: number) {
   return await prisma.ticket.findUnique({
     where: { id: ticketId },
     select: {
@@ -80,7 +80,7 @@ const ticketRepository = {
   findTickeyById,
   findTickeWithTypeById,
   ticketProcessPayment,
-  getEmailInfo
+  getInfoByEmail
 };
 
 export default ticketRepository;
