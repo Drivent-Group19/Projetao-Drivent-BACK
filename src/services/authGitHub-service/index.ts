@@ -13,7 +13,6 @@ export async function loginUserWithGitHub(code: string) {
 
 type GitHubParamsForAccessToken = {
   code: string;
-  grant_type: string;
   redirect_uri: string;
   client_id: string;
   client_secret: string;
@@ -26,7 +25,6 @@ async function exchangeCodeForAccessToken(code: string) {
   const { REDIRECT_URL, CLIENT_ID, CLIENT_SECRET } = process.env;
   const params: GitHubParamsForAccessToken = {
     code,
-    grant_type: "authorization_code",
     redirect_uri: REDIRECT_URL,
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET
