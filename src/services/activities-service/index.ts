@@ -27,7 +27,7 @@ async function postBookings(activityId: number, userId: number) {
 
   if(!activities) throw notFoundError();
 
-  const activitiesTime = await activitiesRepository.findAllActivitiesBookings(userId);
+  const activitiesTime = await activitiesRepository.findAllActivitiesBookings(Number(userId));
 
   for (let i = 0; i < activitiesTime.length; i++) {
     const activity = await activitiesRepository.findActivitiesById(activitiesTime[i].activityId);

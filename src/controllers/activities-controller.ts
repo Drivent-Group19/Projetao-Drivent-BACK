@@ -8,7 +8,7 @@ export async function getActivities(req: AuthenticatedRequest, res: Response, ne
   const { userId } = req;
 
   try {
-    const activities = await activitiesService.getActivities(userId);
+    const activities = await activitiesService.getActivities(Number(userId));
 
     return res.status(httpStatus.OK).send(activities);
   } catch (error) {
@@ -41,6 +41,8 @@ export async function postBookings(req: AuthenticatedRequest, res: Response, nex
   const { activityId } = req.body as ActivitiesBody;
 
   try {
+    console.log(userId);
+    console.log(activityId);
     const bookings = await activitiesService.postBookings(activityId, Number(userId));
 
     return res.status(httpStatus.CREATED).send(bookings);
