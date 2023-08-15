@@ -51,10 +51,10 @@ async function createHotels() {
 
   const images = [
     'https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg',
-    'https://images.app.goo.gl/qz7PZ4TeYogqjG8N9',
-    'https://images.app.goo.gl/5FkSEKEhtxES8L9M9',
-    'https://images.app.goo.gl/V5Migg7pqNUuCvFD9',
-    'https://images.app.goo.gl/vfwzSyoqewifJ2rRA'
+    'https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg',
+    'https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg',
+    'https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg',
+    'https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg'
   ];
 
   const hotels = images.map((image, index) => {
