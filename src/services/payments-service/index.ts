@@ -32,6 +32,7 @@ async function paymentProcess(ticketId: number, userId: number, cardData: CardPa
   await verifyTicketAndEnrollment(ticketId, userId);
 
   const ticket = await ticketRepository.findTickeWithTypeById(ticketId);
+  console.log(ticket);
 
   const paymentData = {
     ticketId,
