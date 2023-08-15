@@ -22,11 +22,21 @@ async function createEvent() {
   });
 }
 
+
+function getRandomIndex(length: number) {
+
+  // get random index value
+  const randomIndex = Math.floor(Math.random() * length);
+  return randomIndex
+}
+
 function getRooms() {
+  const array=[1,2,3]
+  
   const roomNumberMapper = (n: number, index: number) => {
     return {
       name: (n + index).toString(),
-      capacity: 3,
+      capacity: array[getRandomIndex(3)]
     };
   };
 
@@ -41,7 +51,10 @@ async function createHotels() {
 
   const images = [
     'https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg',
-    'https://forbes.com.br/wp-content/uploads/2022/02/Life_Forbes-Travel-Guide-os-40-melhores-hoteis-que-chegam-em-2022-768x512.jpg',
+    'https://images.app.goo.gl/qz7PZ4TeYogqjG8N9',
+    'https://images.app.goo.gl/5FkSEKEhtxES8L9M9',
+    'https://images.app.goo.gl/V5Migg7pqNUuCvFD9',
+    'https://images.app.goo.gl/vfwzSyoqewifJ2rRA'
   ];
 
   const hotels = images.map((image, index) => {
