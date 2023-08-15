@@ -57,63 +57,6 @@ async function createHotels() {
   return Promise.all(hotels.map((data) => prisma.hotel.create({ data })));
 }
 
-interface CreateScenarioParams {
-  email: string;
-  isRemote: boolean;
-  includesHotel: boolean;
-}
-
-async function createScenario(options: CreateScenarioParams) {
-  const { email, isRemote, includesHotel } = options;
-  const price = faker.datatype.number();
-  console.log('\nCreating user:');
-  console.log({ ...options, password: 'password' });
-
-  return prisma.user.create({
-    data: {
-      email,
-      password: bcrypt.hashSync('password', 12),
-      Enrollment: {
-        create: {
-          name: faker.name.findName(),
-          cpf: generateCPF(),
-          birthday: faker.date.past(),
-          phone: faker.phone.phoneNumber('(##) 9####-####'),
-          Address: {
-            create: {
-              street: faker.address.streetName(),
-              cep: faker.address.zipCode(),
-              city: faker.address.city(),
-              neighborhood: faker.address.city(),
-              number: faker.datatype.number().toString(),
-              state: faker.helpers.arrayElement(getStates()).code,
-            },
-          },
-          Ticket: {
-            create: {
-              status: 'PAID',
-              TicketType: {
-                create: {
-                  price,
-                  includesHotel,
-                  isRemote,
-                  name: faker.name.findName(),
-                },
-              },
-              Payment: {
-                create: {
-                  cardIssuer: faker.name.findName(),
-                  cardLastDigits: faker.datatype.number({ min: 0, max: 9999 }).toString().padStart(4, '0'),
-                  value: price,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  });
-}
 
 async function createActivity() {
   let activity = await prisma.activity.findFirst();
@@ -218,14 +161,21 @@ async function createActivity() {
 }
 
 async function createTicketType() {
-  // let ticketType = await prisma.ticketType.findFirst();
+  let ticket = await prisma.ticket.findFirst()
+  if(ticket) {
+    await prisma.ticket.deleteMany({})
+  }
 
-  // if(ticketType) await prisma.ticketType.deleteMany({});
+  let ticketType = await prisma.ticketType.findFirst();
+
+   if(ticketType) {
+    await prisma.ticketType.deleteMany({});
+   };
 
    await prisma.ticketType.create({
     data:{
       name: 'Online',
-      price: 150,
+      price: 100,
       isRemote: true,
       includesHotel: false,
       createdAt: dayjs().toDate(),
@@ -234,20 +184,20 @@ async function createTicketType() {
 
    await prisma.ticketType.create({
     data:{
-      name: 'Presencial',
-      price: 489,
+      name: 'Presencial Sem Hotel',
+      price: 250,
       isRemote: false,
-      includesHotel: true,
+      includesHotel: false,
       createdAt: dayjs().toDate(),
     },
   });
 
    await prisma.ticketType.create({
     data:{
-      name: 'Presencial',
-      price: 489,
+      name: 'Presencial Com Hotel',
+      price: 600,
       isRemote: false,
-      includesHotel: false,
+      includesHotel: true,
       createdAt: dayjs().toDate(),
     },
   });
@@ -258,9 +208,6 @@ async function main() {
   await Promise.all([
     createEvent(),
     createHotels(),
-    createScenario({ email: 'ticketonly@email.com', isRemote: false, includesHotel: false }),
-    createScenario({ email: 'hotel@email.com', isRemote: false, includesHotel: true }),
-    createScenario({ email: 'remote@email.com', isRemote: true, includesHotel: false }),
     createActivity(),
     createTicketType(),
   ]);
