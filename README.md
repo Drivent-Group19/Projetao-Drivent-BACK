@@ -4,7 +4,19 @@ Back-end for Driven.t, an event management solution.
 
 ## About
 
-Driven.t is a web browser application with which you can manage every single aspect of your event.
+Driven.t is a web browser application with which you can manage every single aspect of your event. Many technologies and tools were implemented during the project's development, such as:
+
+- Javascript and Typescript for code's writing
+- PrismaORM for the database connection and modelling
+- PostgreSQL
+- Architecture ( Utils, Repositories, Services, Controllers and Routers)
+- Schemas and Middleware validation
+- Errors treatment
+- Integration tests
+- Redis cache
+
+  ![Captura de tela de 2023-09-26 17-10-09](https://github.com/Drivent-Group19/Projetao-Drivent-BACK/assets/122137155/d7c1b5ce-d474-4d22-be7d-7c743ee43ec9)
+
 
 ## How to run for development
 
